@@ -1,0 +1,6 @@
+module Pods_MediaDemo {
+  umbrella header "Pods-MediaDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
