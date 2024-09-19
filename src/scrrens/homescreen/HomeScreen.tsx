@@ -1,52 +1,67 @@
-import React, { useState, useRef } from "react";
-import { View, Text, FlatList, ViewToken } from "react-native";
+import React, { useState, useRef, useEffect } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  ViewToken,
+  ActivityIndicator,
+} from "react-native";
 import list from "../../data/media.json";
 import { MediaType } from "../types";
 import styles from "./styles";
 import MediaItem, { MediaVideoRef } from "./components/MediaItem/MediaItems";
 import ItemSeperator from "./components/ItemSaperator/ItemSaperator";
-const viewabilityConfig = { viewAreaCoveragePercentThreshold: 70 };
-const HomeScreen = () => {
-  const [isLoading, setLoading] = useState(false);
-  const videoRefs = useRef<MediaVideoRef>(null);
+import EmptyView from "./components/emptyView/EmptyView";
+import useNetwrok from "./hooks/useNetweok";
+import { NavigationProp } from "@react-navigation/native";
+import { RootStackParamList } from "../../route/types";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+type HomeScreenProps = NativeStackScreenProps<RootStackParamList, "Dashboard">;
+
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {}, []);
+
+  const { isLoading, mediaArr, totalPage } = useNetwrok(page);
 
   const renderSaperator = () => <ItemSeperator />;
 
   const renderItem = ({ item, index }: { item: MediaType; index: number }) => (
-    <MediaItem
-      ref={(ref) => (videoRefs[index] = ref)}
-      index={index}
-      item={item}
-    />
+    <MediaItem item={item} index={index} onPress={onClickItem} />
   );
 
-  const _onViewableItemsChanged = (props) => {
-    const changed = props.changed;
-    const viewableItems = props.viewableItems;
-
-    changed.forEach((item, index) => {
-      if (!item.isViewable && videoRefs.current) {
-        console.log("changed calling -> ", changed);
-        // videoRefs[index].current.pause();
-      }
-    });
-
-    viewableItems.forEach((item, index) => {
-      if (item.isViewable && videoRefs.current) {
-        videoRefs[index].current.play();
-      }
+  const onClickItem = (index: number) => {
+    navigation.navigate("DetailScreen", {
+      selectedIndex: index,
+      mediaList: mediaArr,
     });
   };
+
+  const onEndReached = () => {
+    console.log("onEndReached calling --> ", !isLoading, page);
+    if (!isLoading && page <= totalPage) {
+      setPage((pg) => ++pg);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={list as Array<MediaType>}
-        contentContainerStyle={styles.listcontainer}
+        data={mediaArr}
+        contentContainerStyle={
+          mediaArr.length == 0 ? styles.listcontainer : styles.listStyle
+        }
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={renderSaperator}
-        viewabilityConfig={viewabilityConfig}
-        onViewableItemsChanged={_onViewableItemsChanged}
+        ListEmptyComponent={() => <EmptyView />}
+        onEndReachedThreshold={0.7}
+        onEndReached={onEndReached}
+        ListFooterComponent={() =>
+          isLoading && <ActivityIndicator size={"small"} />
+        }
       />
     </View>
   );

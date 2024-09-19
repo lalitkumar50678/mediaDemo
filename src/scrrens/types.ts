@@ -3,3 +3,9 @@ export type MediaType = {
   type: string;
   url: string;
 };
+
+export type MediaData = {
+  media: Array<MediaType>;
+  currentPage: number;
+  totalPages: number;
+};
