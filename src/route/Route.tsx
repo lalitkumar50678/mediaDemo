@@ -15,9 +15,7 @@ const RootRoute = () => {
         <Stack.Screen
           name="DetailScreen"
           component={DetailScreen}
-          options={{
-            headerShown: false,
-          }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

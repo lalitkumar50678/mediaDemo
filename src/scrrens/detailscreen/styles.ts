@@ -11,6 +11,16 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 5,
+  },
+  arrowIcon: {
+    height: 40,
+    width: 30,
+  },
+  dowlonadIcon: {
+    height: 30,
+    width: 30,
   },
 });
 export default styles;
