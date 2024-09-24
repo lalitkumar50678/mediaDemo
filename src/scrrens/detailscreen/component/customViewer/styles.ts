@@ -2,11 +2,8 @@ import { StyleSheet, Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    //justifyContent: "center",
-    backgroundColor: "blue",
-    //alignItems: "center",
-    //height: Dimensions.get("window").height - 100,
+    // flex: 1,
+    height: Dimensions.get("window").height - 100,
   },
   imageStyle: {
     height: "100%",
@@ -15,7 +12,6 @@ const styles = StyleSheet.create({
   videoStyle: {
     width: "100%",
     height: 300,
-    backgroundColor: "pink",
   },
 });
 

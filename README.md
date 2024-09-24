@@ -1,22 +1,14 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+This is a Media demo for Arth Early Learning Spaces.
 
-# Getting Started
+# Introducation
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+I will be presenting a demo for Arth Early Learning Spaces. In this demo, I've created a FlatList to display both images and videos. Once the current set of images has been displayed, an API call is triggered to fetch more content and update the list. Essentially, I've implemented pagination to handle the loading of additional data.
 
-## Step 1: Start the Metro Server
+## Dashboard
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+Dashboard is first page of the application where we show the list of images and videos. In this page also i introduce the pagination funcitonlaity. In pagination functionlaity once user reach at the end of list. We call aonther api to get new list and append in above list.
 
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
+![Dashboard image](images/dashboard.png)
 
 ## Step 2: Start your Application
 

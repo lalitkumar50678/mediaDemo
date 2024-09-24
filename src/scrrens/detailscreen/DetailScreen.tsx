@@ -28,6 +28,7 @@ type DetailScreenProps = NativeStackScreenProps<
 
 const DetailScreen: React.FC<DetailScreenProps> = ({ navigation }) => {
   const { selectedIndex, mediaList } = useRoute().params;
+
   const onBackButtonClick = () => {
     navigation.goBack();
   };
@@ -38,7 +39,6 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ navigation }) => {
     downloadImage(mediaList[selectedIndex].url);
   };
 
-  console.log("selectedIndex -> ", selectedIndex);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topBarStyle}>
@@ -53,17 +53,15 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ navigation }) => {
           <Image source={images.downloadIcon} style={styles.dowlonadIcon} />
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, backgroundColor: "red" }}>
-        <GallerySwiper
-          images={mediaList}
-          initialPage={selectedIndex}
-          initialNumToRender={mediaList.length < 7 ? 7 : mediaList.length}
-          scrollViewStyle={{ height: 500 }}
-          imageComponent={(imageProps, imageDimensions, index) => (
-            <CustomViewer item={mediaList[index]} />
-          )}
-        />
-      </View>
+      <GallerySwiper
+        images={mediaList}
+        initialPage={selectedIndex}
+        initialNumToRender={mediaList.length < 7 ? 7 : mediaList.length}
+        scrollViewStyle={{ height: 500 }}
+        imageComponent={(imageProps, imageDimensions, index) => (
+          <CustomViewer item={mediaList[index]} />
+        )}
+      />
     </SafeAreaView>
   );
 };

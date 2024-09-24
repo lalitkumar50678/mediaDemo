@@ -1,19 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  ViewToken,
-  ActivityIndicator,
-} from "react-native";
-import list from "../../data/media.json";
+import React, { useState, useEffect } from "react";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import { MediaType } from "../types";
 import styles from "./styles";
-import MediaItem, { MediaVideoRef } from "./components/MediaItem/MediaItems";
+import MediaItem from "./components/MediaItem/MediaItems";
 import ItemSeperator from "./components/ItemSaperator/ItemSaperator";
 import EmptyView from "./components/emptyView/EmptyView";
 import useNetwrok from "./hooks/useNetweok";
-import { NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../../route/types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 

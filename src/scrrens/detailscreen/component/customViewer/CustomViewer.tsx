@@ -1,10 +1,6 @@
-import React from "react";
-import { Image, Text, View } from "react-native";
-import Video from "react-native-video";
+import React, { useState } from "react";
+import { ActivityIndicator, Image, Text, View } from "react-native";
 import VideoPlayer from "react-native-video-controls";
-import GestureRecognizer, {
-  swipeDirections,
-} from "react-native-swipe-gestures";
 import { MediaType } from "../../../types";
 import styles from "./styles";
 
@@ -16,6 +12,16 @@ const config = {
   directionalOffsetThreshold: 80,
 };
 const CustomViewer: React.FC<CustomViewerType> = ({ item }) => {
+  const [isImageLoading, setImageLoading] = useState(false);
+
+  const onImageLoadStart = () => {
+    setImageLoading(true);
+  };
+
+  const onImageLoadingStop = () => {
+    setImageLoading(false);
+  };
+
   return (
     <View style={styles.container}>
       {/* <View
@@ -24,11 +30,16 @@ const CustomViewer: React.FC<CustomViewerType> = ({ item }) => {
         }}
       > */}
       {item.type === "image" ? (
-        <Image
-          source={{ uri: item.url }}
-          resizeMode="contain"
-          style={styles.imageStyle}
-        />
+        <>
+          {isImageLoading && <ActivityIndicator size={"small"} />}
+          <Image
+            source={{ uri: item.url }}
+            resizeMode="contain"
+            style={styles.imageStyle}
+            onLoadStart={onImageLoadStart}
+            onLoadEnd={onImageLoadingStop}
+          />
+        </>
       ) : (
         <VideoPlayer
           source={{ uri: item.url }}
@@ -36,6 +47,7 @@ const CustomViewer: React.FC<CustomViewerType> = ({ item }) => {
           disableFullscreen
           disableVolume
           disableBack
+          muted
         />
       )}
       {/* </View> */}

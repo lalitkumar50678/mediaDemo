@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
     minHeight: 300,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: GRAY_COLOR,
+    alignItems: "center",
+    justifyContent: "center",
   },
   videoSty: {
     height: 400,
@@ -15,6 +17,13 @@ const styles = StyleSheet.create({
   },
   itemAlign: {
     alignItems: "center",
+  },
+  absolute: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });
 

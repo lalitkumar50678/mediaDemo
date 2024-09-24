@@ -12,13 +12,19 @@ const useNetwrok = (page: number) => {
   }, [page]);
 
   const fetchMedia = async () => {
-    setLoading(true);
-    const response: MediaData = await getMediaData(page);
-    console.log("response -> ", response);
-    setTotalPage(response.totalPages);
-    setMediaArr(
-      mediaArr.length === 0 ? response.media : [...mediaArr, ...response.media]
-    );
+    try {
+      setLoading(true);
+      const response: MediaData = await getMediaData(page);
+      console.log("response -> ", response);
+      setTotalPage(response.totalPages);
+      setMediaArr(
+        mediaArr.length === 0
+          ? response.media
+          : [...mediaArr, ...response.media]
+      );
+    } catch (err) {
+      console.log("Network calling ---> ", JSON.stringify(err));
+    }
     setLoading(false);
   };
   return {

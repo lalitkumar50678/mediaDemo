@@ -5,6 +5,7 @@ import React, {
   useRef,
 } from "react";
 import { View, Image, ActivityIndicator, TouchableOpacity } from "react-native";
+import { BlurView } from "@react-native-community/blur";
 import Video, { VideoRef } from "react-native-video";
 import { MediaType } from "../../../types";
 import styles from "./styles";
@@ -39,7 +40,7 @@ const MediaItem: React.FC<MediaItemType> = ({ item, index, onPress }) => {
             onLoadEnd={onImageLoadingStop}
             style={styles.imageSty}
             source={{ uri: item.url }}
-            resizeMode="contain"
+            resizeMode="cover"
           />
         </View>
       ) : (
