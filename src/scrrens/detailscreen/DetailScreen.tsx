@@ -18,6 +18,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../route/types";
 import images from "../../utility/images";
 import CustomViewer from "./component/customViewer/CustomViewer";
+import useImageDownloader from "./hooks/useImageDownloader";
+import { MediaType } from "../types";
 
 type DetailScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -29,6 +31,13 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ navigation }) => {
   const onBackButtonClick = () => {
     navigation.goBack();
   };
+
+  const downloadImage = useImageDownloader();
+
+  const onClickDowlnoad = () => {
+    downloadImage(mediaList[selectedIndex].url);
+  };
+
   console.log("selectedIndex -> ", selectedIndex);
   return (
     <SafeAreaView style={styles.container}>
@@ -40,25 +49,21 @@ const DetailScreen: React.FC<DetailScreenProps> = ({ navigation }) => {
             style={styles.arrowIcon}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onClickDowlnoad}>
           <Image source={images.downloadIcon} style={styles.dowlonadIcon} />
         </TouchableOpacity>
       </View>
-
-      <GallerySwiper
-        images={mediaList}
-        initialPage={selectedIndex}
-        // scrollViewStyle={{ flex: 1, backgroundColor: "black" }}
-        //style={{ flex: 1, backgroundColor: "black" }}
-        initialNumToRender={mediaList.length < 7 ? 7 : mediaList.length}
-        maxOverScrollDistance={0}
-        //removeClippedSubviews={false}
-        //sensitiveScroll={false}
-        imageComponent={(imageProps, imageDimensions, index) => (
-          <CustomViewer item={mediaList[index]} />
-        )}
-      />
-      {/* <View style={{ backgroundColor: "gray", height: 50, width: 100 }} /> */}
+      <View style={{ flex: 1, backgroundColor: "red" }}>
+        <GallerySwiper
+          images={mediaList}
+          initialPage={selectedIndex}
+          initialNumToRender={mediaList.length < 7 ? 7 : mediaList.length}
+          scrollViewStyle={{ height: 500 }}
+          imageComponent={(imageProps, imageDimensions, index) => (
+            <CustomViewer item={mediaList[index]} />
+          )}
+        />
+      </View>
     </SafeAreaView>
   );
 };

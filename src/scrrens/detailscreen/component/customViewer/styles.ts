@@ -1,11 +1,12 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
-    backgroundColor: "pink",
+    //justifyContent: "center",
+    backgroundColor: "blue",
     //alignItems: "center",
+    //height: Dimensions.get("window").height - 100,
   },
   imageStyle: {
     height: "100%",

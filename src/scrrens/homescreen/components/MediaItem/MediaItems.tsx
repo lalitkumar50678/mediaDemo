@@ -49,6 +49,7 @@ const MediaItem: React.FC<MediaItemType> = ({ item, index, onPress }) => {
           }}
           ref={videoRef}
           style={styles.videoSty}
+          muted
         />
       )}
     </TouchableOpacity>
