@@ -1,6 +1,5 @@
 import React from "react";
-import { Alert, PermissionsAndroid, Platform, Linking } from "react-native";
-import RNFS from "react-native-fs";
+import { Alert, PermissionsAndroid, Platform } from "react-native";
 import RNFetchBlob from "rn-fetch-blob";
 import {
   Ok_button,
@@ -20,7 +19,6 @@ const useImageDownloader = () => {
             buttonPositive: Ok_button,
           }
         );
-        console.log("granted ---> ", granted);
         return granted === PermissionsAndroid.RESULTS.GRANTED;
       } catch (err) {
         console.warn(err);
@@ -29,10 +27,6 @@ const useImageDownloader = () => {
     }
     return true;
   };
-
-  // const downloadImage = async (url: string) => {
-  //   downloadImageFile(url);
-  // };
 
   const getExtention = (filename: string) => {
     return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;

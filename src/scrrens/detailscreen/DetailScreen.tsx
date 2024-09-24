@@ -1,15 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  ViewToken,
-  ActivityIndicator,
-  TouchableOpacity,
-  Image,
-  StatusBar,
-  AccessibilityInfo,
-} from "react-native";
+import React from "react";
+import { View, TouchableOpacity, Image } from "react-native";
 import GallerySwiper from "react-native-gallery-swiper";
 import { useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";

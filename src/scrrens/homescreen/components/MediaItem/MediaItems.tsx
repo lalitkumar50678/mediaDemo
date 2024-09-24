@@ -1,11 +1,5 @@
-import React, {
-  useState,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import React, { useState, useRef } from "react";
 import { View, Image, ActivityIndicator, TouchableOpacity } from "react-native";
-import { BlurView } from "@react-native-community/blur";
 import Video, { VideoRef } from "react-native-video";
 import { MediaType } from "../../../types";
 import styles from "./styles";

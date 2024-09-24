@@ -24,11 +24,6 @@ const CustomViewer: React.FC<CustomViewerType> = ({ item }) => {
 
   return (
     <View style={styles.container}>
-      {/* <View
-        style={{
-          backgroundColor: "yellow",
-        }}
-      > */}
       {item.type === "image" ? (
         <>
           {isImageLoading && <ActivityIndicator size={"small"} />}
@@ -50,7 +45,6 @@ const CustomViewer: React.FC<CustomViewerType> = ({ item }) => {
           muted
         />
       )}
-      {/* </View> */}
     </View>
   );
 };

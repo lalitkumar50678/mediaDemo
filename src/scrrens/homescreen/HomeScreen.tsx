@@ -32,7 +32,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   };
 
   const onEndReached = () => {
-    console.log("onEndReached calling --> ", !isLoading, page);
     if (!isLoading && page <= totalPage) {
       setPage((pg) => ++pg);
     }
